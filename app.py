@@ -4,7 +4,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	file = '/home/justin/Documents/Flask-captioning-server/smiley.gif'
+	return render_template('index.html', filename=file)
 
 if __name__ == '__main__':
     app.run()
