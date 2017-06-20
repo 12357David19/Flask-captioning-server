@@ -1,7 +1,14 @@
 <html>
 <body>
-
-<img src="/static/smiley.gif" alt="Smiley face" width="42" height="42">
+<div>
+<img src="{{filename}}" alt="Scout image"/>
+<form action="/submit" method="post">
+    {% for label in labels %}
+    <input type="checkbox" name={{label}} value=""> {{label}}<br>
+    {% endfor %}
+  <input type="submit" value="Submit">
+</form>
+</div>
 
 </body>
 </html>
