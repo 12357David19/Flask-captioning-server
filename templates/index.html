@@ -2,7 +2,7 @@
 <body>
 <div>
 <img src="{{filename}}" alt="Scout image"/>
-<form action="/submit" method="post">
+<form action="/submit" method="post" name="form">
     {% for label in labels %}
     <input type="checkbox" name={{label}} value=""> {{label}}<br>
     {% endfor %}
