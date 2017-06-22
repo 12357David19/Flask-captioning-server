@@ -2,7 +2,7 @@
 <body>
 <div>
 <img src="{{filename}}" alt="Scout image"/>
-<form action="/submit" method="post" name="form">
+<form name="labels" onsubmit="sendLabels()">
     {% for label in labels %}
     <input type="checkbox" name={{label}} value=""> {{label}}<br>
     {% endfor %}
@@ -12,3 +12,7 @@
 
 </body>
 </html>
+
+function sendLables(){
+
+}
