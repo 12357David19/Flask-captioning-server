@@ -4,15 +4,34 @@
 <img src="{{filename}}" alt="Scout image"/>
 <form name="labels" onsubmit="sendLabels()">
     {% for label in labels %}
-    <input type="checkbox" name={{label}} value=""> {{label}}<br>
+    <input type="checkbox" name={{label}} id={{label}} value=""> {{label}}<br>
     {% endfor %}
   <input type="submit" value="Submit">
 </form>
 </div>
 
 </body>
-</html>
-
-function sendLables(){
-
+<script type = "text/javascript">
+function sendLabels(){
+    {% for label in labels %}
+    var {{label}} = 0;
+    if (document.getElementById("{{label}}").checked) {
+    {{label}} = 1;}
+    {% endfor %}
+    var xhr = new XMLHttpRequest();
+    var url = "/submit";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    data = JSON.stringify({"filename":"{{filename}}",
+    {% for label in labels %}
+    "is_{{label}}":{{label}},
+    {% endfor %}});
+    xhr.send(data);
 }
+</script>
+</html>
